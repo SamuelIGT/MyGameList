@@ -15,6 +15,9 @@ class ViewController: UIViewController {
         
         view.backgroundColor = UIColor.red;
         
+        //Gives a margin to the content and the scroll bar so they wont be hidden behind the bar
+        //collectionView.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
+        //collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(50, 0, 0, 0)
         setupMenuBar()
     }
     
@@ -25,7 +28,8 @@ class ViewController: UIViewController {
 
     private func setupMenuBar(){
         view.addSubview(menuBar)
-        view.addConstrainsWi
+        view.addContraintsWithFormat(format: "H:|[v0]|", views: menuBar)
+        view.addContraintsWithFormat(format: "V:[v0(50)]|", views: menuBar)
         
     }
 }

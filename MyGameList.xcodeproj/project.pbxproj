@@ -14,6 +14,7 @@
 		7E0FB00821096EEB006220E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E0FB00621096EEB006220E6 /* LaunchScreen.storyboard */; };
 		7E0FB01221097489006220E6 /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FB01121097489006220E6 /* MenuBar.swift */; };
 		7E0FB015210976FD006220E6 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FB014210976FD006220E6 /* Extensions.swift */; };
+		7E0FB0172109948B006220E6 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FB0162109948B006220E6 /* MenuCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		7E0FB00921096EEB006220E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E0FB01121097489006220E6 /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		7E0FB014210976FD006220E6 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7E0FB0162109948B006220E6 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				7E0FB01121097489006220E6 /* MenuBar.swift */,
+				7E0FB0162109948B006220E6 /* MenuCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E0FB00021096EEB006220E6 /* ViewController.swift in Sources */,
+				7E0FB0172109948B006220E6 /* MenuCell.swift in Sources */,
 				7E0FAFFE21096EEB006220E6 /* AppDelegate.swift in Sources */,
 				7E0FB01221097489006220E6 /* MenuBar.swift in Sources */,
 				7E0FB015210976FD006220E6 /* Extensions.swift in Sources */,
