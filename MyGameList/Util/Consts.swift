@@ -7,5 +7,5 @@
 //
 
 class Consts{
-    static let teste:CFloat = 1;
+    static let NUMBER_OF_TABS = 2;
 }

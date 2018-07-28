@@ -50,13 +50,27 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //return CGSize(width: collectionViewLayout.collectionViewContentSize.width, height: collectionViewLayout.collectionViewContentSize.height)
         
         return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        menuBar.tabIndicatorBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 2
+        let duration: CFTimeInterval = 0.5
+        let timingFunction = CAMediaTimingFunction(controlPoints: 0.65, -0.55, 0.27, 1.55); //Estilo da animação (easy-in, fade-out e etc)
+        
+        //Inicializa o gerenciador de animação/transição
+        CATransaction.begin();
+        CATransaction.setAnimationDuration(duration);
+        CATransaction.setAnimationTimingFunction(timingFunction);
+        
+        //self.menuBar.tabIndicatorBarLeftAnchorConstraint?.constant += scrollView.contentOffset.x / 15
+        self.menuBar.tabIndicatorBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / CGFloat(Consts.NUMBER_OF_TABS)
+        
+        UIView.animate(withDuration: duration){
+            self.view.layoutIfNeeded()
+        }
+        
+        CATransaction.commit();
     }
     
     
@@ -74,8 +88,9 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func scrollToTabIndex(tabIndex: Int){
+        
         let indexPath = IndexPath(item: tabIndex, section: 0)
-        collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        self.collectionView?.scrollToItem(at: indexPath, at: .right , animated: true)
     }
 }
 
