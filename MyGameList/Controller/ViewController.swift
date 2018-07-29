@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
-    let cellId = "cellId"
+    let cellId = ["selectionCellId", "listCellId"]
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +27,10 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         }
         
         collectionView?.backgroundColor = UIColor.green;
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        
+        collectionView?.register(GamesSelectionCell.self, forCellWithReuseIdentifier: cellId[0])
+        collectionView?.register(GameListCell.self, forCellWithReuseIdentifier: cellId[1])
+        
         //collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         //collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         collectionView?.contentInsetAdjustmentBehavior = .never
@@ -40,11 +43,12 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
         
-        let colors: [UIColor] = [UIColor.blue, .brown, .darkGray, .purple ]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId[indexPath.item], for: indexPath)
         
-        cell.backgroundColor = colors[indexPath.item]
+//        let colors: [UIColor] = [UIColor.blue, .brown, .darkGray, .purple ]
+//
+//        cell.backgroundColor = colors[indexPath.item]
         
         return cell
     }
@@ -63,7 +67,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         CATransaction.setAnimationDuration(duration);
         CATransaction.setAnimationTimingFunction(timingFunction);
         
-        //self.menuBar.tabIndicatorBarLeftAnchorConstraint?.constant += scrollView.contentOffset.x / 15
+        //self.menuBar.tabIndicatorBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 1.5
         self.menuBar.tabIndicatorBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / CGFloat(Consts.NUMBER_OF_TABS)
         
         UIView.animate(withDuration: duration){
