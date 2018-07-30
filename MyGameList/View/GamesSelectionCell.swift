@@ -24,5 +24,13 @@ class GamesSelectionCell: BaseCell {
         indexView.layer.cornerRadius = 20
         indexView.layer.masksToBounds = true
 
+       // let swipeGesture = UIPanGestureRecognizer(target: indexView.self, action: #selector(self.handleSwipe))
+//        swipeGesture.delegate = indexView.self
+        
+     //   indexView.addGestureRecognizer(swipeGesture)
     }
+    
+/*    @objc func handleSwipe (sender: UIPanGestureRecognizer? = nil){
+        print("dragin")
+    }*/
 }

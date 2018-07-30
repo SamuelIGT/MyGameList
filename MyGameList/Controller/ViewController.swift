@@ -46,16 +46,12 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId[indexPath.item], for: indexPath)
         
-//        let colors: [UIColor] = [UIColor.blue, .brown, .darkGray, .purple ]
-//
-//        cell.backgroundColor = colors[indexPath.item]
-        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
