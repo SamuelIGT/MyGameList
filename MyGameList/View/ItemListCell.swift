@@ -21,7 +21,7 @@ class ItemListCell: BaseCell {
         super.setupViews()
         
         addSubview(titleLabel)
-        addContraintsWithFormat(format: "H:|[v0]|", views: titleLabel)
+        addContraintsWithFormat(format: "H:|-8-[v0]-8-|", views: titleLabel)
         addContraintsWithFormat(format: "V:|[v0]|", views: titleLabel)
     }
 }
