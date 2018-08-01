@@ -50,12 +50,12 @@ class GameCardView: UIView {
         super.layoutSubviews()
         
         //TODO: procurar lugar melhor pra colocar esse código
-        //TODO: transformar as margins em variaveis para melhor organização do código
         
-        let heightMarginConstrain = ((frame.height - (frame.width - 32)) / 2)
-        
-        addContraintsWithFormat(format: "H:|-16-[v0]-16-|", views: rateImageView)
-        addContraintsWithFormat(format: "V:|-\(heightMarginConstrain)-[v0]-\(heightMarginConstrain)-|", views: rateImageView)
+//        let leftMarginConstraint = frame.width / 2
+//        let heightMarginConstraint = ((frame.height - (frame.width - leftMarginConstraint)) / 2)
+//        
+//        addContraintsWithFormat(format: "H:|-\(leftMarginConstraint / 2)-[v0]-\(leftMarginConstraint / 2)-|", views: rateImageView)
+//        addContraintsWithFormat(format: "V:|-\(heightMarginConstraint)-[v0]-\(heightMarginConstraint)-|", views: rateImageView)
         
     }
     
@@ -66,6 +66,11 @@ class GameCardView: UIView {
         
         addSubview(rateImageView)
         
+        rateImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        rateImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        rateImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/2).isActive = true
+        rateImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1/2).isActive = true
+        rateImageView.translatesAutoresizingMaskIntoConstraints = false
         
         
 //        let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(self.setupSwipe))
