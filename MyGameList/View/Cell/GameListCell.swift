@@ -13,7 +13,7 @@ class GameListCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor.brown
+        cv.backgroundColor = UIColor.clear
         cv.dataSource = self
         cv.delegate = self
         return cv
@@ -24,7 +24,7 @@ class GameListCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
     override func setupViews() {
         super.setupViews()
         
-        backgroundColor = UIColor.gray
+        backgroundColor = UIColor.clear
         
         addSubview(collectionView)
         addContraintsWithFormat(format: "H:|[v0]|", views: collectionView)

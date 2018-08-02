@@ -20,19 +20,18 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         setupMenuBar()
         
     }
+    
     func setupCollectionView(){
         if let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout{
             flowLayout.scrollDirection = .horizontal
             flowLayout.minimumLineSpacing = 0
         }
         
-        collectionView?.backgroundColor = UIColor.green;
+        setupGradient()
         
         collectionView?.register(GamesSelectionCell.self, forCellWithReuseIdentifier: cellId[0])
         collectionView?.register(GameListCell.self, forCellWithReuseIdentifier: cellId[1])
         
-        //collectionView?.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        //collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         collectionView?.contentInsetAdjustmentBehavior = .never
         collectionView?.isPagingEnabled = true
         collectionView?.isScrollEnabled = false
@@ -63,7 +62,6 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         CATransaction.setAnimationDuration(duration);
         CATransaction.setAnimationTimingFunction(timingFunction);
         
-        //self.menuBar.tabIndicatorBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 1.5
         self.menuBar.tabIndicatorBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / CGFloat(Consts.NUMBER_OF_TABS)
         
         UIView.animate(withDuration: duration){
@@ -85,6 +83,13 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         view.addContraintsWithFormat(format: "H:|[v0]|", views: menuBar)
         view.addContraintsWithFormat(format: "V:[v0(50)]|", views: menuBar)
         
+    }
+    
+    private func setupGradient(){
+        collectionView?.backgroundView = GradientView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        //collectionView?.backgroundColor = UIColor.red;
+        collectionView?.backgroundView?.gradientLayer.colors = Consts.GAME_SELECTION_BACKGROUND_GRADIENT_COLORS
+        collectionView?.backgroundView?.gradientLayer.gradient = GradientPoint.topLeftBottomRight.draw()
     }
     
     func scrollToTabIndex(tabIndex: Int){

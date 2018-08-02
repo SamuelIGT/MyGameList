@@ -13,7 +13,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor.blue
+        cv.backgroundColor = UIColor.clear
         cv.dataSource = self
         cv.delegate = self
         
@@ -38,7 +38,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         collectionView.selectItem(at: selectedIndexPath as IndexPath, animated: false, scrollPosition: [])
         
         //UIView Background
-        backgroundColor = UIColor.blue;
+        backgroundColor = UIColor.clear;
         
         setupTabIndicatorBar()
     }
@@ -92,7 +92,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         cell.imageView.image = UIImage(named: imageNames[indexPath.item])?.withRenderingMode(.alwaysTemplate)
         cell.tintColor = UIColor.rgb(red: 91, green: 14, blue: 13, alpha: 1)
         
-        cell.backgroundColor = UIColor.cyan
+        cell.backgroundColor = UIColor.clear
         
         return cell
     }

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E00DB7F211365C60078CFB6 /* GradientPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E00DB7E211365C60078CFB6 /* GradientPoint.swift */; };
+		7E00DB81211366A00078CFB6 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E00DB80211366A00078CFB6 /* GradientLayer.swift */; };
+		7E00DB842113670A0078CFB6 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E00DB832113670A0078CFB6 /* Protocol.swift */; };
+		7E00DB86211367590078CFB6 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E00DB85211367590078CFB6 /* GradientView.swift */; };
 		7E0FAFFE21096EEB006220E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FAFFD21096EEB006220E6 /* AppDelegate.swift */; };
 		7E0FB00021096EEB006220E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FAFFF21096EEB006220E6 /* ViewController.swift */; };
 		7E0FB00321096EEB006220E6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E0FB00121096EEB006220E6 /* Main.storyboard */; };
@@ -24,6 +28,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E00DB7E211365C60078CFB6 /* GradientPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientPoint.swift; sourceTree = "<group>"; };
+		7E00DB80211366A00078CFB6 /* GradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
+		7E00DB832113670A0078CFB6 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
+		7E00DB85211367590078CFB6 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		7E0FAFFA21096EEA006220E6 /* MyGameList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyGameList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E0FAFFD21096EEB006220E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E0FAFFF21096EEB006220E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +61,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E00DB82211366D70078CFB6 /* Custom Gradient */ = {
+			isa = PBXGroup;
+			children = (
+				7E00DB7E211365C60078CFB6 /* GradientPoint.swift */,
+				7E00DB80211366A00078CFB6 /* GradientLayer.swift */,
+				7E00DB832113670A0078CFB6 /* Protocol.swift */,
+				7E00DB85211367590078CFB6 /* GradientView.swift */,
+			);
+			path = "Custom Gradient";
+			sourceTree = "<group>";
+		};
+		7E00DB8721136CCD0078CFB6 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7E0FB0162109948B006220E6 /* MenuCell.swift */,
+				7EE02523210E6535001125F7 /* BaseCell.swift */,
+				7EE02525210E65EB001125F7 /* GameListCell.swift */,
+				7EE02527210E68F5001125F7 /* GamesSelectionCell.swift */,
+				7E204FB6210FB9D700175ED3 /* ItemListCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		7E0FAFF121096EEA006220E6 = {
 			isa = PBXGroup;
 			children = (
@@ -95,12 +126,8 @@
 		7E0FB01021097464006220E6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7E00DB8721136CCD0078CFB6 /* Cell */,
 				7E0FB01121097489006220E6 /* MenuBar.swift */,
-				7E0FB0162109948B006220E6 /* MenuCell.swift */,
-				7EE02523210E6535001125F7 /* BaseCell.swift */,
-				7EE02525210E65EB001125F7 /* GameListCell.swift */,
-				7EE02527210E68F5001125F7 /* GamesSelectionCell.swift */,
-				7E204FB6210FB9D700175ED3 /* ItemListCell.swift */,
 				7E204FB8210FBF5200175ED3 /* GameCardView.swift */,
 			);
 			path = View;
@@ -109,6 +136,7 @@
 		7E0FB013210976DC006220E6 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				7E00DB82211366D70078CFB6 /* Custom Gradient */,
 				7EEED820210BA1CE00FDD36A /* Consts.swift */,
 				7E0FB014210976FD006220E6 /* Extensions.swift */,
 			);
@@ -189,10 +217,14 @@
 			files = (
 				7E204FB9210FBF5200175ED3 /* GameCardView.swift in Sources */,
 				7EE02528210E68F5001125F7 /* GamesSelectionCell.swift in Sources */,
+				7E00DB86211367590078CFB6 /* GradientView.swift in Sources */,
+				7E00DB7F211365C60078CFB6 /* GradientPoint.swift in Sources */,
+				7E00DB842113670A0078CFB6 /* Protocol.swift in Sources */,
 				7E0FB00021096EEB006220E6 /* ViewController.swift in Sources */,
 				7EEED821210BA1CE00FDD36A /* Consts.swift in Sources */,
 				7E0FB0172109948B006220E6 /* MenuCell.swift in Sources */,
 				7E204FB7210FB9D700175ED3 /* ItemListCell.swift in Sources */,
+				7E00DB81211366A00078CFB6 /* GradientLayer.swift in Sources */,
 				7EE02526210E65EB001125F7 /* GameListCell.swift in Sources */,
 				7EE02524210E6535001125F7 /* BaseCell.swift in Sources */,
 				7E0FAFFE21096EEB006220E6 /* AppDelegate.swift in Sources */,

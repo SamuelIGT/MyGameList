@@ -72,16 +72,7 @@ class GameCardView: UIView {
         rateImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1/2).isActive = true
         rateImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        
-//        let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(self.setupSwipe))
-//        addGestureRecognizer(swipeGesture)
     }
-    
-//    @objc func setupSwipe(_ sender: UIPanGestureRecognizer){
-//        let point = sender.translation(in: superview)
-//
-//        center = CGPoint(x: ((superview?.center.x)! + point.x), y: ((superview?.center.y)! + point.y))
-//    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

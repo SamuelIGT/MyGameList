@@ -14,7 +14,7 @@ class GamesSelectionCell: BaseCell {
     override func setupViews() {
         super.setupViews()
         
-        backgroundColor = UIColor.red
+        backgroundColor = UIColor.clear
         
         
         let cardView = GameCardView()
@@ -34,13 +34,13 @@ class GamesSelectionCell: BaseCell {
         let xDistanceFromCenter = card.center.x - center.x
         
         let angle = (xDistanceFromCenter / frame.width) * Consts.CARD_VIEW_MAX_ROTATION
+        let scale = min((Consts.CARD_VIEW_LIMIT_TO_SCALE / abs(xDistanceFromCenter)), 1)
         
         card.center = CGPoint(x: (self.center.x + point.x), y: (self.center.y /*+ point.y*/))
-        card.transform = CGAffineTransform(rotationAngle: angle/*xDistanceFromCenter / angleDivisor*/)
+        card.transform = CGAffineTransform(rotationAngle: angle).scaledBy(x: scale, y: scale)
         
-        let rotation = CGFloat(atan2f(Float(card.transform.b), Float(card.transform.a)))
-        
-        print(rotation * (CGFloat(180) / .pi))
+//        let rotation = CGFloat(atan2f(Float(card.transform.b), Float(card.transform.a))) //angle units(radiants)
+//        print(rotation * (CGFloat(180) / .pi)) //angle
         
         if(xDistanceFromCenter > 0){
             card.rateImageView.image = #imageLiteral(resourceName: "thumb-up-button")
