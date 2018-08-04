@@ -21,7 +21,6 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     }()
     
     let cellId = "cellId"
-    let imageNames = ["console", "list"]
     
     var viewController: ViewController?
     
@@ -47,7 +46,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     var tabIndicatorBarView = UIView()
     
         func setupTabIndicatorBar() {
-        tabIndicatorBarView.backgroundColor = UIColor.white
+        tabIndicatorBarView.backgroundColor = Consts.PRIMARY_ICON_COLOR
         tabIndicatorBarView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(tabIndicatorBarView)
@@ -89,10 +88,10 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MenuCell
         
-        cell.imageView.image = UIImage(named: imageNames[indexPath.item])?.withRenderingMode(.alwaysTemplate)
-        cell.tintColor = UIColor.rgb(red: 91, green: 14, blue: 13, alpha: 1)
-        
-        cell.backgroundColor = UIColor.clear
+        cell.imageView.image = UIImage(named: Consts.TAB_BAR_ICONS_NAME[indexPath.item])?.withRenderingMode(.alwaysTemplate)
+        cell.tintColor = Consts.PRIMARY_ICON_COLOR
+//
+//        cell.backgroundColor = UIColor.clear
         
         return cell
     }

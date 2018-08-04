@@ -8,6 +8,8 @@
 import UIKit
 class Consts{
     static let NUMBER_OF_TABS = 2;
+    static let TAB_BAR_ICONS_NAME = ["Console", "List"];
+    static let CARD_VIEW_CORNER_RADIUS: CGFloat = 12
     
     //ANIMATION CONSTANTS
     static let SWIPE_LIMIT:CGFloat = 75.0;
@@ -18,6 +20,10 @@ class Consts{
     
     
     //COLORS
-    static let GAME_SELECTION_BACKGROUND_GRADIENT_COLORS = [UIColor.init(hexString: "#65799B").cgColor, UIColor.init(hexString: "#5E2563").cgColor]
-    static let GAMES_LIST_BACKGROUND_GRADIENT_COLORS = [UIColor.init(hexString: "#65799B").cgColor, UIColor.init(hexString: "#5E2563").cgColor]
+    static let GAME_SELECTION_BACKGROUND_GRADIENT_COLORS = [UIColor.init(hexString: "#65799B").cgColor, UIColor.init(hexString: "#5E2563").cgColor];
+    
+    static let GAMES_LIST_BACKGROUND_GRADIENT_COLORS = [UIColor.init(hexString: "#65799B").cgColor, UIColor.init(hexString: "#5E2563").cgColor];
+    
+    static let PRIMARY_ICON_COLOR = UIColor.init(hexString: "#F2F7FC")
+    
 }

@@ -12,7 +12,7 @@ class GameCardView: UIView {
     
     let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "console")
+        imageView.image = #imageLiteral(resourceName: "header")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -28,7 +28,7 @@ class GameCardView: UIView {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Controle XBOX"
+        label.text = "Mario Bros"
         return label
     }()
     
@@ -60,18 +60,43 @@ class GameCardView: UIView {
     }
     
     func setupView(){
-        backgroundColor = UIColor.darkGray
-        layer.cornerRadius = 20
-        layer.masksToBounds = true
-        
+        backgroundColor = UIColor.white
+        layer.cornerRadius = Consts.CARD_VIEW_CORNER_RADIUS
+        addSubview(thumbnailImageView)
         addSubview(rateImageView)
         
+        
+        
+        layoutRateView()
+        layoutThumbnailImageView()
+    }
+    
+    func layoutRateView(){
         rateImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         rateImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         rateImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/2).isActive = true
         rateImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1/2).isActive = true
         rateImageView.translatesAutoresizingMaskIntoConstraints = false
-        
+    }
+    
+    func layoutThumbnailImageView(){
+        thumbnailImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        thumbnailImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        thumbnailImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
+        thumbnailImageView.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1/2).isActive = true
+        thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
+        thumbnailImageView.layer.cornerRadius = Consts.CARD_VIEW_CORNER_RADIUS
+        thumbnailImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+    }
+    
+    func addViewShadow(){
+        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.3
+        layer.shadowOffset = CGSize(width: 4, height: 10)
+        layer.shadowRadius = 20
+        layer.masksToBounds = false
+        layer.shouldRasterize = true
     }
     
     required init?(coder aDecoder: NSCoder) {
