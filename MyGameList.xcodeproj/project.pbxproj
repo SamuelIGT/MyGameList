@@ -24,6 +24,7 @@
 		7EE02524210E6535001125F7 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE02523210E6535001125F7 /* BaseCell.swift */; };
 		7EE02526210E65EB001125F7 /* GameListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE02525210E65EB001125F7 /* GameListCell.swift */; };
 		7EE02528210E68F5001125F7 /* GamesSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE02527210E68F5001125F7 /* GamesSelectionCell.swift */; };
+		7EE1D38B21177CDE001850A9 /* UILabelWithPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE1D38A21177CDE001850A9 /* UILabelWithPadding.swift */; };
 		7EEED821210BA1CE00FDD36A /* Consts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EEED820210BA1CE00FDD36A /* Consts.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		7EE02523210E6535001125F7 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		7EE02525210E65EB001125F7 /* GameListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListCell.swift; sourceTree = "<group>"; };
 		7EE02527210E68F5001125F7 /* GamesSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesSelectionCell.swift; sourceTree = "<group>"; };
+		7EE1D38A21177CDE001850A9 /* UILabelWithPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelWithPadding.swift; sourceTree = "<group>"; };
 		7EEED820210BA1CE00FDD36A /* Consts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,6 +131,7 @@
 				7E00DB8721136CCD0078CFB6 /* Cell */,
 				7E0FB01121097489006220E6 /* MenuBar.swift */,
 				7E204FB8210FBF5200175ED3 /* GameCardView.swift */,
+				7EE1D38A21177CDE001850A9 /* UILabelWithPadding.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -219,6 +222,7 @@
 				7EE02528210E68F5001125F7 /* GamesSelectionCell.swift in Sources */,
 				7E00DB86211367590078CFB6 /* GradientView.swift in Sources */,
 				7E00DB7F211365C60078CFB6 /* GradientPoint.swift in Sources */,
+				7EE1D38B21177CDE001850A9 /* UILabelWithPadding.swift in Sources */,
 				7E00DB842113670A0078CFB6 /* Protocol.swift in Sources */,
 				7E0FB00021096EEB006220E6 /* ViewController.swift in Sources */,
 				7EEED821210BA1CE00FDD36A /* Consts.swift in Sources */,
