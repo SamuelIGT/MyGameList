@@ -43,7 +43,7 @@ class GameCardView: UIView {
         textView.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.regular)
         textView.textColor = Consts.SECONDARY_TEXT_COLOR
         
-        textView.text = "No Man's Sky is a game about exploration and survival in an infinite procedurally generated universe. No Man's Sky is a game about exploration and survival in an infinite procedurally generated universe. No Man's Sky is a game about exploration and survival in an infinite procedurally generated universe."
+        textView.text = "No Man's Sky is a game about exploration and survival in an infinite procedurally generated universe."
         
         return textView
     }()
@@ -116,15 +116,15 @@ class GameCardView: UIView {
         setupViewsCorner(view: descriptionTextView, corners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
     }
     
-    func addViewShadow(){
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.3
-        layer.shadowOffset = CGSize(width: 4, height: 10)
-        layer.shadowRadius = 20
-        layer.masksToBounds = false
-        layer.shouldRasterize = true
-    }
+//    func addShadow(){
+//        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath
+//        layer.shadowColor = UIColor.black.cgColor
+//        layer.shadowOpacity = 0.3
+//        layer.shadowOffset = CGSize(width: 4, height: 10)
+//        layer.shadowRadius = 20
+//        layer.masksToBounds = false
+//        layer.shouldRasterize = true
+//    }
     
     private func setupViewsCorner(view: UIView, corners: CACornerMask){
         view.layer.cornerRadius = Consts.CARD_VIEW_CORNER_RADIUS

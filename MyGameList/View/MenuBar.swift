@@ -53,7 +53,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
         
         //tabIndicatorBarView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         tabIndicatorBarView.centerYAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        tabIndicatorBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/5).isActive = true//how large the view will be
+        tabIndicatorBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/6).isActive = true//how large the view will be
         tabIndicatorBarView.heightAnchor.constraint(equalToConstant: 12).isActive = true//how tall the view will be
         
         tabIndicatorBarView.layer.cornerRadius = 6

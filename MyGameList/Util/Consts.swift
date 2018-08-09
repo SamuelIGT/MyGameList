@@ -10,9 +10,13 @@ class Consts{
     static let NUMBER_OF_TABS = 2;
     static let TAB_BAR_ICONS_NAME = ["Console", "List"];
     static let CARD_VIEW_CORNER_RADIUS: CGFloat = 6;
+    static let BUTTON_SHADOW_RADIUS: CGFloat = 20;
+    static let CARD_VIEW_SHADOW_RADIUS: CGFloat = 20;
     
     //STRINGS------------------------------------------------|
     static let GAME_SELECTION_TITLE = "Discover"
+    static let BTN_LIKE_TAG = 5490
+    static let BTN_DISLIKE_TAG = 5480
     
     //MARGINS AND PADDINGS-----------------------------------|
     static let CARD_TITLE_PADDING_TOP: CGFloat = 8;
@@ -32,7 +36,7 @@ class Consts{
     static let CARD_VIEW_SWIPE_OFF_DURATION = 0.3;
     static let CARD_VIEW_MAX_ROTATION:CGFloat = 0.61;//radiants(unit of angle) = 35º
     static let CARD_VIEW_LIMIT_TO_SCALE:CGFloat = 100;
-    static let CARD_VIEW_ALPHA_ADITIONAL_CONSTANT:CGFloat = 0.1;
+    static let CARD_VIEW_ALPHA_ADITIONAL_CONSTANT:CGFloat = 1.1;
     
     //COLORS----------------------------------------------------------------------------------------------------------------------------------------|
     static let GAME_SELECTION_BACKGROUND_GRADIENT_COLORS = [UIColor.init(hexString: "#65799B").cgColor, UIColor.init(hexString: "#5E2563").cgColor];

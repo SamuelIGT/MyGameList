@@ -9,8 +9,12 @@
 import UIKit
 
 class GamesSelectionCell: BaseCell {
-    var angleDivisor: CGFloat!
-    var cardDefaultCenter: CGPoint!
+    private var angleDivisor: CGFloat!
+    private var cardDefaultCenter: CGPoint!
+    private var swipeGesture: UIPanGestureRecognizer!
+    private var cardsLoaded = [GameCardView]()
+    private var cardHeight: CGFloat = 0
+    private var cardWidth: CGFloat = 0
     
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -25,8 +29,8 @@ class GamesSelectionCell: BaseCell {
         let btn = UIButton()
         btn.setImage(#imageLiteral(resourceName: "Like"), for: .normal)
         btn.imageView?.contentMode = .scaleAspectFit
-        btn.imageView?.clipsToBounds = true
         btn.imageEdgeInsets = UIEdgeInsetsMake(16, 12, 12, 12)
+        btn.clipsToBounds = true
         btn.backgroundColor = Consts.PRIMARY_ICON_COLOR
         return btn
     }()
@@ -35,8 +39,8 @@ class GamesSelectionCell: BaseCell {
         let btn = UIButton()
         btn.setImage(#imageLiteral(resourceName: "Dislike"), for: .normal)
         btn.imageView?.contentMode = .scaleAspectFit
-        btn.imageView?.clipsToBounds = true
-        btn.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12)
+        btn.imageEdgeInsets = UIEdgeInsetsMake(16, 16, 16, 16)
+        btn.clipsToBounds = true
         btn.backgroundColor = Consts.PRIMARY_ICON_COLOR
         return btn
     }()
@@ -44,15 +48,16 @@ class GamesSelectionCell: BaseCell {
     override func setupViews() {
         super.setupViews()
         
-        let cardHeight = frame.height / 2
-        let cardWidth = frame.width - 32
-        let cardView = GameCardView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
-        addSubview(cardView)
-        cardView.addViewShadow()
-
+        swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(handleSwipe))
+        cardHeight = frame.height / 2
+        cardWidth = frame.width - 32
         cardDefaultCenter = CGPoint(x: self.center.x, y: self.center.y - (self.center.y / 6))
-        cardView.center = cardDefaultCenter
-
+        
+        prepareCardView()
+        setupCard(cardView: cardsLoaded[0])
+        
+        prepareCardView()
+        
         
         addSubview(titleLabel)
         layoutTitleLabel()
@@ -61,26 +66,43 @@ class GamesSelectionCell: BaseCell {
         addSubview(btnDislike)
         layoutButtons()
         
-//        let height = frame.height / 2
-//        let heightMargin = frame.height / 8
-//        addContraintsWithFormat(format: "H:|-16-[v0]-16-|", views: cardView)
-//        addContraintsWithFormat(format: "V:[v0(\(height))]", views: cardView)
-//        cardView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -heightMargin).isActive = true
-
-        let swipeGesture = UIPanGestureRecognizer(target: self, action: #selector(handleSwipe))
-        cardView.addGestureRecognizer(swipeGesture)
-        
         angleDivisor = (frame.width / 2) / Consts.CARD_VIEW_MAX_ROTATION
+    }
+    
+    func setupCard(cardView: GameCardView){
+        addShadow(view: cardView, shadowRadius: Consts.CARD_VIEW_SHADOW_RADIUS)
+        cardView.addGestureRecognizer(swipeGesture)
+    }
+    func prepareCardView(){
+        let cardView = GameCardView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
+        
+        if(cardsLoaded.count > 0){
+            insertSubview(cardView, belowSubview: cardsLoaded[cardsLoaded.count - 1])
+        }else{
+            addSubview(cardView)
+        }
+        
+        cardView.center = cardDefaultCenter
+        cardsLoaded.append(cardView)
     }
     
     func layoutButtons(){
         let bottomAnchorConstant = (cardDefaultCenter.y - center.y) * 1.5
+        let btnFrame = CGRect(x: 0, y: 0, width: frame.width / 6, height: frame.width / 6)
+        
+        btnLike.frame = btnFrame
+        
         btnLike.bottomAnchor.constraint(equalTo: bottomAnchor, constant: bottomAnchorConstant ).isActive = true
         btnLike.rightAnchor.constraint(equalTo: rightAnchor, constant: -(cardDefaultCenter.x / 2)).isActive = true
         btnLike.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/6).isActive = true
         btnLike.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1/6).isActive = true
         btnLike.translatesAutoresizingMaskIntoConstraints = false
         btnLike.layer.cornerRadius = frame.width / 12
+        addShadow(view: btnLike, shadowRadius: Consts.BUTTON_SHADOW_RADIUS)
+        btnLike.tag = Consts.BTN_LIKE_TAG
+        btnLike.addTarget(self, action: #selector(self.handleActionButtons), for: .touchUpInside)
+        
+        btnDislike.frame = btnFrame
         
         btnDislike.bottomAnchor.constraint(equalTo: bottomAnchor, constant: bottomAnchorConstant ).isActive = true
         btnDislike.leftAnchor.constraint(equalTo: leftAnchor, constant: cardDefaultCenter.x / 2).isActive = true
@@ -88,6 +110,9 @@ class GamesSelectionCell: BaseCell {
         btnDislike.heightAnchor.constraint(equalTo: widthAnchor, multiplier: 1/6).isActive = true
         btnDislike.translatesAutoresizingMaskIntoConstraints = false
         btnDislike.layer.cornerRadius = frame.width / 12
+        addShadow(view: btnDislike, shadowRadius: Consts.BUTTON_SHADOW_RADIUS)
+        btnDislike.tag = Consts.BTN_DISLIKE_TAG
+        btnDislike.addTarget(self, action: #selector(self.handleActionButtons), for: .touchUpInside)
     }
     
     func layoutTitleLabel(){
@@ -115,7 +140,7 @@ class GamesSelectionCell: BaseCell {
             card.rateImageView.image = #imageLiteral(resourceName: "X")
         }
         
-        card.rateImageView.alpha = (abs(xDistanceFromCenter) / center.x) + Consts.CARD_VIEW_ALPHA_ADITIONAL_CONSTANT
+        card.rateImageView.alpha = (abs(xDistanceFromCenter) / center.x) * Consts.CARD_VIEW_ALPHA_ADITIONAL_CONSTANT
         
         
         if (sender.state == UIGestureRecognizerState.ended) {
@@ -145,7 +170,59 @@ class GamesSelectionCell: BaseCell {
         UIView.animate(withDuration: Consts.CARD_VIEW_SWIPE_OFF_DURATION, animations: {
             card.center = CGPoint(x: card.center.x + xOffset, y: card.center.y + yOffset)
             card.alpha = 0
-        })
+        }) { (finished) in
+            self.setupNewCard()
+        }
+    }
+    
+    func setupNewCard(){
+        self.setupCard(cardView: self.cardsLoaded[1])
+        cardsLoaded[0].removeFromSuperview()
+        cardsLoaded.remove(at: 0)
+        prepareCardView()
+    }
+    
+    func addShadow(view: UIView, shadowRadius: CGFloat){
+        view.layer.shadowPath = UIBezierPath(roundedRect: view.bounds, cornerRadius: view.layer.cornerRadius).cgPath
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.3
+        view.layer.shadowOffset = CGSize(width: 4, height: 10)
+        view.layer.shadowRadius = shadowRadius
+        view.layer.masksToBounds = false
+       // view.layer.shouldRasterize = true
+    }
+    
+    @objc func handleActionButtons(_ sender: UIButton){
+        if(sender.tag == Consts.BTN_LIKE_TAG){
+            btnSwipeOff(toLeft: false)
+        }else{//== BTN_DISLIKE
+            btnSwipeOff(toLeft: true)
+        }
+    }
+    
+    
+    func btnSwipeOff(toLeft: Bool){
+        UIView.animateKeyframes(withDuration: 1, delay: 0, options: UIViewKeyframeAnimationOptions.calculationModeLinear, animations: {
+            
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/2, animations: {
+                let x = toLeft ? -(self.cardDefaultCenter.x * 2) : (self.cardDefaultCenter.x * 2)
+                let y = self.cardDefaultCenter.y
+                let rotationAngle = toLeft ? -(Consts.CARD_VIEW_MAX_ROTATION / 2) : (Consts.CARD_VIEW_MAX_ROTATION / 2)
+                
+                self.cardsLoaded[0].center = CGPoint(x: x, y: y)
+                self.cardsLoaded[0].transform = CGAffineTransform(rotationAngle: rotationAngle).scaledBy(x: 0.6, y: 0.6)
+            })
+            UIView.addKeyframe(withRelativeStartTime: 1/2, relativeDuration: 1/2, animations: {
+                let xOffset:CGFloat = toLeft ? -200 : 200
+                let yOffset:CGFloat = 75
+
+                self.cardsLoaded[0].center = CGPoint(x: self.cardsLoaded[0].center.x + xOffset, y: self.cardsLoaded[0].center.y + yOffset)
+                self.cardsLoaded[0].alpha = 0
+            })
+            
+        }) { (finished) in
+            self.setupNewCard()
+        }
     }
     
 }
