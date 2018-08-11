@@ -31,7 +31,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         collectionView?.register(GamesSelectionCell.self, forCellWithReuseIdentifier: cellId[0])
         collectionView?.register(GameListCell.self, forCellWithReuseIdentifier: cellId[1])
-        
+
         collectionView?.contentInsetAdjustmentBehavior = .never
         collectionView?.isPagingEnabled = true
         collectionView?.isScrollEnabled = false
@@ -65,7 +65,8 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         self.menuBar.tabIndicatorBarLeftAnchorConstraint?.constant = scrollView.contentOffset.x / CGFloat(Consts.NUMBER_OF_TABS)
         
         UIView.animate(withDuration: duration){
-            self.view.layoutIfNeeded()
+            self.menuBar.layoutIfNeeded()
+            //self.view.layoutIfNeeded()
         }
         
         CATransaction.commit();
@@ -87,15 +88,37 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     private func setupGradient(){
         collectionView?.backgroundView = GradientView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        //collectionView?.backgroundColor = UIColor.red;
         collectionView?.backgroundView?.gradientLayer.colors = Consts.GAME_SELECTION_BACKGROUND_GRADIENT_COLORS
         collectionView?.backgroundView?.gradientLayer.gradient = GradientPoint.topLeftBottomRight.draw()
+        
     }
     
     func scrollToTabIndex(tabIndex: Int){
         
         let indexPath = IndexPath(item: tabIndex, section: 0)
-        self.collectionView?.scrollToItem(at: indexPath, at: .right , animated: true)
+        self.collectionView?.scrollToItem(at: indexPath, at: .right , animated: false)
+       
+        
+        let isMainTab = (tabIndex == 0) ? true : false
+        let colors = isMainTab ? Consts.GAME_SELECTION_BACKGROUND_GRADIENT_COLORS : Consts.GAMES_LIST_BACKGROUND_GRADIENT_COLORS
+        
+        CATransaction.begin()
+        CATransaction.setAnimationDuration(0.5)
+        CATransaction.setCompletionBlock {
+            self.collectionView?.backgroundView?.gradientLayer.colors = colors
+//            self.collectionView?.backgroundView?.gradientLayer.startPoint = CGPoint(x: 1, y: 1)
+//            self.collectionView?.backgroundView?.gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.5)
+        }
+        
+        
+        let gradientAnimation = CABasicAnimation(keyPath: "colors")
+        gradientAnimation.duration = 1
+        gradientAnimation.toValue = colors
+        gradientAnimation.fillMode = kCAFillModeForwards
+        gradientAnimation.isRemovedOnCompletion = false
+        collectionView?.backgroundView?.gradientLayer.add(gradientAnimation, forKey: "colorChange")
+        
+        CATransaction.commit()
     }
 }
 

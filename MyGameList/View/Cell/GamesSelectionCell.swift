@@ -16,6 +16,9 @@ class GamesSelectionCell: BaseCell {
     private var cardHeight: CGFloat = 0
     private var cardWidth: CGFloat = 0
     
+    private var mock = GamesDatabaseMock()
+    //private var gameCardsMock : [GameCardView] = mock.getGamesCardViews()
+    
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -75,6 +78,7 @@ class GamesSelectionCell: BaseCell {
     }
     func prepareCardView(){
         let cardView = GameCardView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
+        mock.setCardsGameInfo(card: cardView)
         
         if(cardsLoaded.count > 0){
             insertSubview(cardView, belowSubview: cardsLoaded[cardsLoaded.count - 1])
@@ -130,9 +134,6 @@ class GamesSelectionCell: BaseCell {
         
         card.center = CGPoint(x: (cardDefaultCenter.x + point.x), y: (cardDefaultCenter.y /*+ point.y*/))
         card.transform = CGAffineTransform(rotationAngle: angle).scaledBy(x: scale, y: scale)
-        
-//        let rotation = CGFloat(atan2f(Float(card.transform.b), Float(card.transform.a))) //angle units(radiants)
-//        print(rotation * (CGFloat(180) / .pi)) //angle
         
         if(xDistanceFromCenter > 0){
             card.rateImageView.image = #imageLiteral(resourceName: "Heart")
@@ -202,24 +203,30 @@ class GamesSelectionCell: BaseCell {
     
     
     func btnSwipeOff(toLeft: Bool){
+        self.cardsLoaded[0].rateImageView.image = toLeft ? #imageLiteral(resourceName: "Dislike") : #imageLiteral(resourceName: "Like")
+        self.cardsLoaded[0].rateImageView.alpha = 0.2
+        
+        let keyframeAnimations1 = {
+            let x = toLeft ? 0  : (self.cardDefaultCenter.x * 2)//cardDefaultCenter.x - cardDefaultCenter.x = 0
+            let y = self.cardDefaultCenter.y
+            let rotationAngle = toLeft ? -(Consts.CARD_VIEW_MAX_ROTATION / 2) : (Consts.CARD_VIEW_MAX_ROTATION / 2)
+            
+            self.cardsLoaded[0].center = CGPoint(x: x, y: y)
+            self.cardsLoaded[0].transform = CGAffineTransform(rotationAngle: rotationAngle).scaledBy(x: 0.6, y: 0.6)
+            self.cardsLoaded[0].rateImageView.alpha = 1
+        }
+        
+        let ketframeAnimtions2 = {
+            let xOffset:CGFloat = toLeft ? -200 : 200
+            let yOffset:CGFloat = 75
+            
+            self.cardsLoaded[0].center = CGPoint(x: self.cardsLoaded[0].center.x + xOffset, y: self.cardsLoaded[0].center.y + yOffset)
+            self.cardsLoaded[0].alpha = 0
+        }
+        
         UIView.animateKeyframes(withDuration: 1, delay: 0, options: UIViewKeyframeAnimationOptions.calculationModeLinear, animations: {
-            
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/2, animations: {
-                let x = toLeft ? -(self.cardDefaultCenter.x * 2) : (self.cardDefaultCenter.x * 2)
-                let y = self.cardDefaultCenter.y
-                let rotationAngle = toLeft ? -(Consts.CARD_VIEW_MAX_ROTATION / 2) : (Consts.CARD_VIEW_MAX_ROTATION / 2)
-                
-                self.cardsLoaded[0].center = CGPoint(x: x, y: y)
-                self.cardsLoaded[0].transform = CGAffineTransform(rotationAngle: rotationAngle).scaledBy(x: 0.6, y: 0.6)
-            })
-            UIView.addKeyframe(withRelativeStartTime: 1/2, relativeDuration: 1/2, animations: {
-                let xOffset:CGFloat = toLeft ? -200 : 200
-                let yOffset:CGFloat = 75
-
-                self.cardsLoaded[0].center = CGPoint(x: self.cardsLoaded[0].center.x + xOffset, y: self.cardsLoaded[0].center.y + yOffset)
-                self.cardsLoaded[0].alpha = 0
-            })
-            
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/2, animations: keyframeAnimations1)
+            UIView.addKeyframe(withRelativeStartTime: 1/2, relativeDuration: 1/2, animations: ketframeAnimtions2)
         }) { (finished) in
             self.setupNewCard()
         }
