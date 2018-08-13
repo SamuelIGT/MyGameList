@@ -54,7 +54,7 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let duration: CFTimeInterval = 0.5
+        let duration: CFTimeInterval = Consts.TAB_BAR_ANIMATION
         let timingFunction = CAMediaTimingFunction(controlPoints: 0.65, -0.55, 0.27, 1.55); //Estilo da animação (easy-in, fade-out e etc)
         
         //Inicializa o gerenciador de animação/transição
@@ -99,20 +99,18 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         self.collectionView?.scrollToItem(at: indexPath, at: .right , animated: false)
        
         
-        let isMainTab = (tabIndex == 0) ? true : false
-        let colors = isMainTab ? Consts.GAME_SELECTION_BACKGROUND_GRADIENT_COLORS : Consts.GAMES_LIST_BACKGROUND_GRADIENT_COLORS
+        //let isMainTab = (tabIndex == 0) ? true : false
+        let colors = (tabIndex == 0) ? Consts.GAME_SELECTION_BACKGROUND_GRADIENT_COLORS : Consts.GAMES_LIST_BACKGROUND_GRADIENT_COLORS
         
         CATransaction.begin()
         CATransaction.setAnimationDuration(0.5)
         CATransaction.setCompletionBlock {
             self.collectionView?.backgroundView?.gradientLayer.colors = colors
-//            self.collectionView?.backgroundView?.gradientLayer.startPoint = CGPoint(x: 1, y: 1)
-//            self.collectionView?.backgroundView?.gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.5)
         }
         
         
         let gradientAnimation = CABasicAnimation(keyPath: "colors")
-        gradientAnimation.duration = 1
+        gradientAnimation.duration = Consts.GRADIENT_BACKGROUND_ANIMATION
         gradientAnimation.toValue = colors
         gradientAnimation.fillMode = kCAFillModeForwards
         gradientAnimation.isRemovedOnCompletion = false

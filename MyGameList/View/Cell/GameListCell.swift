@@ -10,12 +10,16 @@ import UIKit
 
 class GameListCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
+    let fadeGradient = CAGradientLayer()
+    private var didLayoutFadeGradient = false
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = UIColor.clear
         cv.dataSource = self
         cv.delegate = self
+        cv.contentInset = UIEdgeInsetsMake(50, 0, 0, 0)
         return cv
     }()
     
@@ -31,6 +35,21 @@ class GameListCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
         addContraintsWithFormat(format: "V:|[v0]|", views: collectionView)
         
         collectionView.register(ItemListCell.self, forCellWithReuseIdentifier: cellId)
+        
+        setGradientMask()
+    }
+    
+    func setGradientMask(){
+        fadeGradient.colors = Consts.FADE_GRADIENT_COLORS
+        fadeGradient.locations = Consts.FADE_GRADIENT_LOCATIONS
+        layer.mask = fadeGradient
+    }
+    
+    override func layoutSubviews() {
+        if(!didLayoutFadeGradient){
+            fadeGradient.frame = collectionView.superview?.bounds ?? .null
+            didLayoutFadeGradient = false
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -45,7 +64,7 @@ class GameListCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = (frame.width / 8)
-        return CGSize(width: frame.width, height: height)
+        return CGSize(width: frame.width - 16, height: height)
     }
     
     override var alignmentRectInsets: UIEdgeInsets{
