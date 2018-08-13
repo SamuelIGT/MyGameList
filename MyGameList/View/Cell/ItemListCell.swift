@@ -21,7 +21,9 @@ class ItemListCell: BaseCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Jogo "
+        label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)
+        label.textColor = Consts.PRIMARY_TEXT_COLOR
+        label.text = "No Man's Sky"
         return label
     }()
     
@@ -39,10 +41,13 @@ class ItemListCell: BaseCell {
     func setupThumbnailImage(){
         addSubview(thumbnailImageView)
         
+        let leftMargin = (frame.height * Consts.GAME_IMAGES_ASPECT_RATIO) / 2
+        
         thumbnailImageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1).isActive = true
-        thumbnailImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1/6).isActive = true
-        thumbnailImageView.centerXAnchor.constraint(equalTo: leftAnchor, constant: frame.width / 12).isActive = true
+        thumbnailImageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: Consts.GAME_IMAGES_ASPECT_RATIO).isActive = true
+        thumbnailImageView.centerXAnchor.constraint(equalTo: leftAnchor, constant: leftMargin).isActive = true
         thumbnailImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
         thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
         
     }
@@ -50,9 +55,10 @@ class ItemListCell: BaseCell {
     func setupTitleLabel() {
         addSubview(titleLabel)
         
-        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: thumbnailImageView.rightAnchor, constant: 8).isActive = true
+        //titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: thumbnailImageView.rightAnchor, constant: 16).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         //thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
     }
 }

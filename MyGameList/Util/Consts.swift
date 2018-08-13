@@ -13,6 +13,7 @@ class Consts{
     static let BUTTON_SHADOW_RADIUS: CGFloat = 20;
     static let CARD_VIEW_SHADOW_RADIUS: CGFloat = 20;
     static let FADE_GRADIENT_LOCATIONS: [NSNumber] = [0.0, 0.05, 0.12, 0.8, 0.92, 1.0]
+    static let GAME_IMAGES_ASPECT_RATIO: CGFloat = 460 / 215  //Image dimensions
     
     //STRINGS------------------------------------------------|
     static let GAME_SELECTION_TITLE = "Discover"

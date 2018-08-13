@@ -78,7 +78,7 @@ class GamesSelectionCell: BaseCell {
     }
     func prepareCardView(){
         let cardView = GameCardView(frame: CGRect(x: 0, y: 0, width: cardWidth, height: cardHeight))
-        mock.setCardsGameInfo(card: cardView)
+        cardView.setGame(game: mock.getGameInfo())
         
         if(cardsLoaded.count > 0){
             insertSubview(cardView, belowSubview: cardsLoaded[cardsLoaded.count - 1])

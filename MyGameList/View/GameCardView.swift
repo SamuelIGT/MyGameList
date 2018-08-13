@@ -10,6 +10,8 @@ import UIKit
 
 class GameCardView: UIView {
     
+    private var game: Game?
+    
     let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = #imageLiteral(resourceName: "header")
@@ -116,15 +118,11 @@ class GameCardView: UIView {
         setupViewsCorner(view: descriptionTextView, corners: [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
     }
     
-//    func addShadow(){
-//        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath
-//        layer.shadowColor = UIColor.black.cgColor
-//        layer.shadowOpacity = 0.3
-//        layer.shadowOffset = CGSize(width: 4, height: 10)
-//        layer.shadowRadius = 20
-//        layer.masksToBounds = false
-//        layer.shouldRasterize = true
-//    }
+    func setGame(game:Game){
+        thumbnailImageView.image = game.thumbnailPath
+        titleLabel.text = game.name
+        descriptionTextView.text = game.description
+    }
     
     private func setupViewsCorner(view: UIView, corners: CACornerMask){
         view.layer.cornerRadius = Consts.CARD_VIEW_CORNER_RADIUS

@@ -46,16 +46,16 @@ class GamesDatabaseMock{
         return cards
     }
     
-    func setCardsGameInfo(card:GameCardView){
-        card.titleLabel.text = games[currentIndex].name
-        card.descriptionTextView.text = games[currentIndex].description
-        card.thumbnailImageView.image = games[currentIndex].thumbnailPath
+    func getGameInfo() -> Game{
+        let game = games[currentIndex]
         
         if(currentIndex == games.count-1){
             currentIndex = 0
         }else{
             currentIndex += 1
         }
+        
+        return game
     }
     
     

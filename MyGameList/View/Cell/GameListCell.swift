@@ -63,7 +63,7 @@ class GameListCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height = (frame.width / 8)
+        let height = (frame.width / 6)
         return CGSize(width: frame.width - 16, height: height)
     }
     
