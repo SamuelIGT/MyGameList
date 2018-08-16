@@ -12,6 +12,8 @@ class GameListCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
     
     let fadeGradient = CAGradientLayer()
     private var didLayoutFadeGradient = false
+    let db = GamesDbHelper()
+    private var games = [Game]()
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -30,6 +32,8 @@ class GameListCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
         
         backgroundColor = UIColor.clear
         
+        updateViewData()
+        
         addSubview(collectionView)
         addContraintsWithFormat(format: "H:|[v0]|", views: collectionView)
         addContraintsWithFormat(format: "V:|[v0]|", views: collectionView)
@@ -37,6 +41,10 @@ class GameListCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
         collectionView.register(ItemListCell.self, forCellWithReuseIdentifier: cellId)
         
         setGradientMask()
+    }
+    
+    func updateViewData(){
+        games = db.findAll()
     }
     
     func setGradientMask(){
@@ -53,11 +61,14 @@ class GameListCell: BaseCell, UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return games.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ItemListCell
+        let game = games[indexPath.item]
+        cell.titleLabel.text = game.name
+        cell.thumbnailImageView.image = UIImage(named: game.thumbnailPath)
         
         return cell
     }

@@ -63,7 +63,7 @@ class MenuBar: UIView, UICollectionViewDataSource, UICollectionViewDelegate, UIC
     
     //Indicates the selected tab
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.viewController?.scrollToTabIndex(tabIndex: indexPath.item)
+        self.viewController?.scrollToTabIndex(indexPath: indexPath)
     }
     
     //Called when the cell is loaded

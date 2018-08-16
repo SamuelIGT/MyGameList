@@ -21,9 +21,10 @@ class ItemListCell: BaseCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)
+        label.font = UIFont.systemFont(ofSize: 15, weight: UIFont.Weight.bold)
         label.textColor = Consts.PRIMARY_TEXT_COLOR
         label.text = "No Man's Sky"
+        label.numberOfLines = 0
         return label
     }()
     
@@ -57,7 +58,7 @@ class ItemListCell: BaseCell {
         
         //titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: thumbnailImageView.rightAnchor, constant: 16).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8).isActive = true
         titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         //thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
     }

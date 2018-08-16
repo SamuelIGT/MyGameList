@@ -93,13 +93,28 @@ class ViewController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
     }
     
-    func scrollToTabIndex(tabIndex: Int){
+    func scrollToTabIndex(indexPath: IndexPath){
         
-        let indexPath = IndexPath(item: tabIndex, section: 0)
+       // let indexPath = IndexPath(item: tabIndex, section: 0)
+        let tabIndex = indexPath.item
         self.collectionView?.scrollToItem(at: indexPath, at: .right , animated: false)
-       
+        var indexPaths = [IndexPath]()
         
-        //let isMainTab = (tabIndex == 0) ? true : false
+       
+        if(tabIndex == 1){
+            let cell = self.collectionView?.dequeueReusableCell(withReuseIdentifier: self.cellId[indexPath.item], for: indexPath) as! GameListCell
+            cell.updateViewData()
+            
+            indexPaths.append(indexPath)
+        }
+        
+        UIView.performWithoutAnimation {
+            self.collectionView?.reloadItems(at: indexPaths)
+        }
+        
+        animateGradientBackground(tabIndex)
+    }
+    func animateGradientBackground(_ tabIndex: Int) {
         let colors = (tabIndex == 0) ? Consts.GAME_SELECTION_BACKGROUND_GRADIENT_COLORS : Consts.GAMES_LIST_BACKGROUND_GRADIENT_COLORS
         
         CATransaction.begin()

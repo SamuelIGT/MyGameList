@@ -15,8 +15,9 @@ class GamesSelectionCell: BaseCell {
     private var cardsLoaded = [GameCardView]()
     private var cardHeight: CGFloat = 0
     private var cardWidth: CGFloat = 0
+    let db = GamesDbHelper()
     
-    private var mock = GamesDatabaseMock()
+    private var mock = ServerRequestMock()
     //private var gameCardsMock : [GameCardView] = mock.getGamesCardViews()
     
     let titleLabel: UILabel = {
@@ -172,11 +173,14 @@ class GamesSelectionCell: BaseCell {
             card.center = CGPoint(x: card.center.x + xOffset, y: card.center.y + yOffset)
             card.alpha = 0
         }) { (finished) in
-            self.setupNewCard()
+            self.setupNewCard(toLeft)
         }
     }
     
-    func setupNewCard(){
+    func setupNewCard(_ toLeft: Bool){
+        if(!toLeft){
+            self.db.save(game: self.cardsLoaded[0].getGame())
+        }
         self.setupCard(cardView: self.cardsLoaded[1])
         cardsLoaded[0].removeFromSuperview()
         cardsLoaded.remove(at: 0)
@@ -228,7 +232,7 @@ class GamesSelectionCell: BaseCell {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1/2, animations: keyframeAnimations1)
             UIView.addKeyframe(withRelativeStartTime: 1/2, relativeDuration: 1/2, animations: ketframeAnimtions2)
         }) { (finished) in
-            self.setupNewCard()
+            self.setupNewCard(toLeft)
         }
     }
     

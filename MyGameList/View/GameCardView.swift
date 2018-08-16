@@ -119,9 +119,14 @@ class GameCardView: UIView {
     }
     
     func setGame(game:Game){
-        thumbnailImageView.image = game.thumbnailPath
+        thumbnailImageView.image = UIImage(named: game.thumbnailPath)
         titleLabel.text = game.name
         descriptionTextView.text = game.description
+        self.game = game
+    }
+    
+    func getGame() -> Game{
+        return self.game!
     }
     
     private func setupViewsCorner(view: UIView, corners: CACornerMask){
