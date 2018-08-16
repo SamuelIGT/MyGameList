@@ -45,7 +45,7 @@ class Consts{
     
     //COLORS----------------------------------------------------------------------------------------------------------------------------------------|
     static let GAME_SELECTION_BACKGROUND_GRADIENT_COLORS = [UIColor.init(hexString: "#65799B").cgColor, UIColor.init(hexString: "#5E2563").cgColor];
-    static let GAMES_LIST_BACKGROUND_GRADIENT_COLORS = [UIColor.init(hexString: "#88d3ce").cgColor, UIColor.init(hexString: "#6e45e2").cgColor];
+    static let GAMES_LIST_BACKGROUND_GRADIENT_COLORS = [UIColor.init(hexString: "#8A9CBA").cgColor, UIColor.init(hexString: "#65799B").cgColor];
     static let PRIMARY_ICON_COLOR = UIColor.init(hexString: "#F2F7FC");
     static let PRIMARY_TEXT_COLOR = UIColor.init(hexString: "#51688C");
     static let SECONDARY_TEXT_COLOR = UIColor.init(hexString: "#A5B5CD");
